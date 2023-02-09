@@ -49,7 +49,7 @@ def products(request):
 #         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET', 'POST'])
-def cart_list(request):
+def cart(request):
     if request.method == 'GET':
         cart = CartItem.objects.all()
         serializer = CartSerializer(cart, many=True)
