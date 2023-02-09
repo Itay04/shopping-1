@@ -24,6 +24,10 @@ class CartItem(models.Model):
     def get_total(self):
         return self.product.price * self.quantity
 
+# class order(models.Model):
+#     DataField
+#     OrderID
+
 # class OrderItem(models.Model):
 # #     UserId = 
 # #     OrderID = 
