@@ -23,3 +23,9 @@ class CartItem(models.Model):
 
     def get_total(self):
         return self.product.price * self.quantity
+
+# class OrderItem(models.Model):
+# #     UserId = 
+# #     OrderID = 
+# #     product = models.ForeignKey(Product)
+# #     quantity = models.IntegerField()
