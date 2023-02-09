@@ -52,7 +52,7 @@ def products(request):
 def cart_list(request):
     if request.method == 'GET':
         cart = CartItem.objects.all()
-        serializer = CartSerializerFull(cart, many=True)
+        serializer = CartSerializer(cart, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
