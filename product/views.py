@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import ProductSerializer, CartSerializer
+from .serializers import CartSerializerTwo, ProductSerializer, CartSerializer
 from .models import Product, CartItem
 
 
@@ -52,7 +52,7 @@ def products(request):
 def cart(request):
     if request.method == 'GET':
         cart = CartItem.objects.all()
-        serializer = CartSerializer(cart, many=True)
+        serializer = CartSerializerTwo(cart, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
