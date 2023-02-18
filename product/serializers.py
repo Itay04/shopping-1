@@ -12,7 +12,7 @@ class CartSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CartSerializerTwo(serializers.ModelSerializer):
-    product = ProductSerializer
+    product = ProductSerializer(many=False)
     class Meta:
         model = CartItem
-        fields = '__all__'
+        fields = ['id','quantity','product']
