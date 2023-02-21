@@ -11,6 +11,8 @@ class Product(models.Model):
     updated = models.DateField(auto_now=True)
     image = models.ImageField(null=True, blank=True,
                               default='/placeholder.png')
+    def _str_(self):
+        return self.name
 
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -19,7 +21,7 @@ class CartItem(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def _str_(self):
-        return self.product.name
+        return self.product.name - self.quantity
 
     def get_total(self):
         return self.product.price * self.quantity
