@@ -62,8 +62,9 @@ def cart(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET', 'PUT'])
 def cart_item(request, pk):
+    print (request,pk)
     try:
         cart = CartItem.objects.get(pk=pk)
     except CartItem.DoesNotExist:
@@ -73,13 +74,26 @@ def cart_item(request, pk):
         serializer = CartSerializer(cart)
         return Response(serializer.data)
 
-    elif request.method == 'PUT':
+    if request.method == 'PUT':
         serializer = CartSerializer(cart, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == 'DELETE':
-        cart.soft_delete()
+    # if request.method == 'DELETE':
+    #     print (request)
+    #     cart=CartItem.objects.filter(product_id=pk)
+    #     print (cart.value())
+    #     cart.soft_delete()
+    #     return Response(status=status.HTTP_204_NO_CONTENT)
+    
+@api_view(['DELETE'])
+def deletefromcart(request,pk):
+    print (pk)
+    if request.method == 'DELETE':
+        print (request)
+        cart=CartItem.objects.filter(product_id=pk)
+        print (cart)
+        cart.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
