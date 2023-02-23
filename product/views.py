@@ -81,12 +81,7 @@ def cart_item(request, pk):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    # if request.method == 'DELETE':
-    #     print (request)
-    #     cart=CartItem.objects.filter(product_id=pk)
-    #     print (cart.value())
-    #     cart.soft_delete()
-    #     return Response(status=status.HTTP_204_NO_CONTENT)
+
     
 @api_view(['DELETE'])
 def deletefromcart(request,pk):
